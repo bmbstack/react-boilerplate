@@ -8,7 +8,7 @@ export default (URL,
     method = HTTP_METHOD.GET, 
     data = {}, 
     certificate = false) => 
-    async (dispatch, getState) => {
+    async (dispatch, getState) => { // eslint-disable-line
         dispatch(request());
 
         try {

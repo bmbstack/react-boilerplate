@@ -50,7 +50,7 @@ const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         filename: 'js/vendor.js',
-        chunks: ['react', 'react-dom', 'redux', 'react-redux', 'react-router', 'react-router-redux', 'redux-thunk', 'in-view', 'axios']
+        chunks: ['react', 'react-dom', 'redux', 'react-redux', 'react-router', 'react-router-redux', 'redux-thunk', 'antd', 'in-view', 'axios']
     }),
     // 分离CSS文件
     new ExtractTextPlugin('css/[name].style.css', {
@@ -111,6 +111,12 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                // use css-loader for *.css files
+                test: /\.css/i,
+                loader: ExtractTextPlugin.extract('css-loader?sourceMap'),
+                // exclude: /node_modules/
+            },
+            {
                 // use less-loader for *.less files
                 test: /\.less/i,
                 loader: ExtractTextPlugin.extract(`css-loader!postcss-loader!less-loader?${cssOptions}`),
@@ -156,18 +162,6 @@ module.exports = {
                 loader: 'url?limit=10000&minetype=image/svg+xml'
             }
         ]
-    },
-    vue: {
-        // configure autoprefixer
-        autoprefixer: {
-            browsers: ['last 4 versions']
-        },
-        loaders: {
-            // css: ?modules&camelCase&localIdentName=[name]__[local]__[hash:base64:5]
-            css: ExtractTextPlugin.extract("css-loader"),
-            // less
-            less: ExtractTextPlugin.extract("css-loader!less-loader")
-        }
     },
     postcss: function() {
         return [autoprefixer({browsers: ['last 4 versions']}), precss];

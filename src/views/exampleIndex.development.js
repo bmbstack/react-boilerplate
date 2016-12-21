@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import routes from '../routes/exampleRouter';
 import DevTools from '../components/DevTools';
 
+import '../styles/app.less';
+
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
