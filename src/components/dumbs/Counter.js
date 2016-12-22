@@ -4,7 +4,7 @@ const Counter = ({ content }) =>
     <div>{ content }</div>;
 
 Counter.propTypes = {
-    content: PropTypes.string
+    content: PropTypes.number
 };
 
 export default Counter;
