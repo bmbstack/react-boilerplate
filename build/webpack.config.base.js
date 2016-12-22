@@ -11,6 +11,9 @@ const precss = require('precss');
 
 const package = require('../package.json');
 
+// 当前是否是开发环境
+const __DEV__ = process.env.NODE_ENV === 'development';
+
 // 入口配置文件
 const entries = require('./entries.config.js');
 
@@ -64,8 +67,9 @@ const plugins = [
 ];
 
 // 入口点对象生成
+const REACT_HOT_LOADER = [];
 const entryConfig = entries.reduce((config, item) => {
-    config[item.name] = item.entry;
+    config[item.name] = __DEV__ ? REACT_HOT_LOADER.concat(item.entry) : item.entry;
 
     plugins.push(new HtmlWebpackPlugin(Object.assign({}, HtmlWebpackPluginOptions, {
         filename: `${item.name}.html`,
