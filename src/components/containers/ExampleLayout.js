@@ -16,8 +16,9 @@ const ExampleLayout = ({ children, example, increase, increaseAsync }) =>
             <DatePicker />
         </div>
         <div>
-            <button onClick={ (e) => increase(1) }>Increase</button>
-            <button onClick={ (e) => increaseAsync(1) }>Increase Async</button>
+            <button onClick={ (e) => increase() }>Increase</button>
+            <br/>
+            <button onClick={ (e) => increaseAsync() }>Increase Async</button>
         </div>
     </div>;
 

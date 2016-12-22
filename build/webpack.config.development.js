@@ -11,12 +11,14 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const baseConfig = require('./webpack.config.base');
 
-const PORT = 8090;
+const PORT = 8080;
 const isWindows = os.platform() === 'win32';
 
 const result = merge(baseConfig, {
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
+        // 热更新
+        new webpack.HotModuleReplacementPlugin(),
+        // 环境定义
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"development"',
@@ -46,9 +48,6 @@ const result = merge(baseConfig, {
         aggregateTimeout: 500, //ms, default is 300
         poll: true
     },
-    devServer: {
-        port: PORT
-    }
 });
 
 module.exports = result;

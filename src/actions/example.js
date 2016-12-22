@@ -3,7 +3,7 @@ import asyncActionCreator from './asyncActionCreator';
 import { WEB_API } from '../constants/api';
 import { HTTP_METHOD } from '../constants/http';
 
-export const increase = (count = 1) => ({
+export const increase = (count = 2) => ({
     type: ActionTypes.increase,
     payload: { count }
 });

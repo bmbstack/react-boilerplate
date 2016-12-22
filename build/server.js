@@ -1,3 +1,4 @@
+var colors = require('colors/safe');
 var path = require('path');
 var webpack = require('webpack');
 var express = require('express');
@@ -14,8 +15,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('/:path', function(req, res) {
-    res.sendFile(path.resolve(`../dist/development/${req.params.path}`));
+app.get('*', function(req, res) {
+    console.info(colors.red(path.resolve(`../dist/development/example.html`)));
+    res.sendFile(path.resolve(`../dist/development/example.html`));
 });
 
 app.listen(port, function(err) {
@@ -23,5 +25,5 @@ app.listen(port, function(err) {
         return console.error(err);
     }
 
-    console.log(`Listening at http://localhost:${port}/`);
+    console.info(colors.green.underline(`Listening at http://localhost:${port}/`));
 })

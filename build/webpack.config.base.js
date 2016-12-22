@@ -67,7 +67,7 @@ const plugins = [
 ];
 
 // 入口点对象生成
-const REACT_HOT_LOADER = [];
+const REACT_HOT_LOADER = ['webpack-hot-middleware/client'];
 const entryConfig = entries.reduce((config, item) => {
     config[item.name] = __DEV__ ? REACT_HOT_LOADER.concat(item.entry) : item.entry;
 
@@ -102,14 +102,9 @@ module.exports = {
     module: {
         loaders: [
             {
-                // use vue-loader for *.vue files
-                test: /\.vue$/,
-                loader: 'vue'
-            },
-            {
                 // use babel-loader for *.js or *.jsx files
                 test: /\.js[x]?$/,
-                loader: 'babel',
+                loaders: __DEV__ ? ['react-hot'].concat(['babel']) : ['babel'],
                 // important: exclude files in node_modules
                 // otherwise it's going to be really slow!
                 exclude: /node_modules/
@@ -124,12 +119,6 @@ module.exports = {
                 // use less-loader for *.less files
                 test: /\.less/i,
                 loader: ExtractTextPlugin.extract(`css-loader!postcss-loader!less-loader?${cssOptions}`),
-                exclude: /node_modules/
-            },
-            {
-                // use sass-loader for *.scss files
-                test: /\.scss/i,
-                loader: ExtractTextPlugin.extract('css!sass'),
                 exclude: /node_modules/
             },
             {
@@ -171,10 +160,7 @@ module.exports = {
         return [autoprefixer({browsers: ['last 4 versions']}), precss];
 	},
     resolve: {
-        extensions: ['', '.js', '.vue'],
-        alias: {
-            vue: 'vue/dist/vue.js'
-        }
+        extensions: ['', '.js', '.jsx'],
     },
     plugins: plugins
 };

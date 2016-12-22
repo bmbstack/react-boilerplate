@@ -31,7 +31,7 @@ const reducerMap = {
 };
 
 export const INITIALIZE_STATE = {
-    appleCount: 0,
+    appleCount: 2,
     isOperating: false,
     error: '',
 };
