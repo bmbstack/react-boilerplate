@@ -6,6 +6,7 @@
   "scripts": {
     "test:app": "cross-env NODE_ENV=development mocha ./test/actions/**/*.spec.js ./test/mutations/**/*.spec.js --bail --compilers js:babel-core/register -t 5000 -s 1000",
     "lint": "eslint ./src --fix --cache",
+    "doc": "jsdoc -c ./build/jsdoc.config.json ./src/",
     "dev": "cross-env NODE_ENV=development node ./build/server.js 8080",
     "pre": "cross-env NODE_ENV=preview webpack --config ./build/webpack.config.preview.js --colors --progress",
     "release": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js --colors --progress"
@@ -51,6 +52,8 @@
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
     "in-view": "^0.6.1",
+    "jsdoc": "^3.4.3",
+    "jsdoc-babel": "^0.3.0",
     "jsdom": "^9.8.3",
     "jsdom-global": "^2.1.0",
     "json-loader": "^0.5.4",
