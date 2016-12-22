@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default ({ params: { content }, location: { query } }) =>
+const Welcome = ({ params: { content }, location: { query } }) =>
     <div>Yes { content } { JSON.stringify(query) }</div>;
+
+Welcome.propTypes = {
+    params: PropTypes.object,
+    location: PropTypes.object,
+};
+
+export default Welcome;

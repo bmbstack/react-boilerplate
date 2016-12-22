@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'; // eslint-disable-line
 import Counter from '../dumbs/counter';
-import { connect, mapStateToProps, mapDispatchToProps } from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as exampleActions from '../../actions/example';
 
@@ -16,14 +16,17 @@ const ExampleLayout = ({ children, example, increase, increaseAsync }) =>
             <DatePicker />
         </div>
         <div>
-            <button onClick={ (e) => increase() }>Increase</button>
+            <button onClick={ () => increase() }>Increase</button>
             <br/>
-            <button onClick={ (e) => increaseAsync() }>Increase Async</button>
+            <button onClick={ () => increaseAsync() }>Increase Async</button>
         </div>
     </div>;
 
 ExampleLayout.propTypes = {
-
+    children: PropTypes.element,
+    example: PropTypes.object,
+    increase: PropTypes.func,
+    increaseAsync: PropTypes.func,
 };
 
 function mapState(state) {

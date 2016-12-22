@@ -1,4 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default ({ content }) =>
+const Counter = ({ content }) =>
     <div>{ content }</div>;
+
+Counter.propTypes = {
+    content: PropTypes.string
+};
+
+export default Counter;

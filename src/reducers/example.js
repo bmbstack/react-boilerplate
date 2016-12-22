@@ -6,7 +6,7 @@ const reducerMap = {
             appleCount: state.appleCount + payload.count
         });
     },
-    [ActionTypes.increaseAsyncRequest]: (state, payload) => {
+    [ActionTypes.increaseAsyncRequest]: (state) => {
         return Object.assign({}, state, {
             isOperating: true
         });
