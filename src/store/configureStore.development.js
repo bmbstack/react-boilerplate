@@ -5,12 +5,15 @@ import record from '../middleware/record';
 import rootReducer from '../reducers';
 import DevTools from '../components/DevTools';
 
+import { hashHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
+
 const configureStore = preloadedState => {
     const store = createStore(
         rootReducer,
         preloadedState,
         compose(
-            applyMiddleware(thunk, record, createLogger()),
+            applyMiddleware(thunk, record, routerMiddleware(hashHistory), createLogger()),
             DevTools.instrument()
         )
     );
