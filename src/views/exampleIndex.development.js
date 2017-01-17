@@ -11,12 +11,21 @@ import '../styles/app.less';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
+const loadedStates = ['complete', 'loaded', 'interactive'];
 
-render(
-    <Provider store={ store }>
-        <div>
-            <Router history={ history } routes={ routes }></Router>
-            <DevTools />
-        </div>
-    </Provider>
-, document.querySelector('#app'));
+function run() {
+    render(
+        <Provider store={ store }>
+            <div>
+                <Router history={ history } routes={ routes }></Router>
+                <DevTools />
+            </div>
+        </Provider>
+        , document.querySelector('#app'));
+}
+
+if (loadedStates.includes(document.readyState) && document.body) {
+    run();
+} else {
+    window.addEventListener('DOMContentLoaded', run, false);
+}

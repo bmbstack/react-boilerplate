@@ -24,12 +24,6 @@ const result = merge(baseConfig, {
             }
         })
     ],
-    vue: {
-        // css
-        css: ExtractTextPlugin.extract("css-loader?modules&minimize&camelCase&localIdentName=[hash]"),
-        // less
-        less: ExtractTextPlugin.extract("css-loader!less-loader")
-    },
     debug: false,
     devtool: false,
 });
