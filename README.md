@@ -1,6 +1,25 @@
 #react-boilerplate
 
 ## History
+- 2017年01月20日
+    - 添加异步路由示例, 除了以下示例代码, 其他部分和同步路由没有区别
+```javascript
+    // webpack.config.base.js
+    // ...loaders
+    {
+        // separate files, bundle.js will be minify
+        test: /\.lazy\.js$/i,
+        loaders: ['bundle-loader?lazy&name=[name]', 'babel'],
+    },
+
+```
+```jsx
+{/* 
+    exampleRoute.js
+    ...routes
+*/}
+<Route path="lazy" getComponent={ (nextState, cb) => loadAsyncWelcome(component => cb(null, component)) } />
+```
 - 2017年01月17日(1.0.1)
     - 修复生产环境编译错误的问题
 - 2017年01月14日(1.0.0)

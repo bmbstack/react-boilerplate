@@ -107,7 +107,12 @@ module.exports = {
                 loaders: __DEV__ ? ['react-hot'].concat(['babel']) : ['babel'],
                 // important: exclude files in node_modules
                 // otherwise it's going to be really slow!
-                exclude: /node_modules/
+                exclude: /node_modules|\.lazy\.js/
+            },
+            {
+                // separate files, bundle.js will be minify
+                test: /\.lazy\.js$/i,
+                loaders: ['bundle-loader?lazy&name=[name]', 'babel'],
             },
             {
                 // use css-loader for *.css files
