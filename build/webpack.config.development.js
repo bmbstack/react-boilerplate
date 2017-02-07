@@ -41,9 +41,6 @@ const result = merge(baseConfig, {
     },
     progress: true,
     keepalive: true,
-    externals: {
-
-    },
     watchOptions: {
         aggregateTimeout: 500, //ms, default is 300
         poll: true

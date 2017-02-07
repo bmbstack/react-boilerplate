@@ -26,6 +26,10 @@ const result = merge(baseConfig, {
     ],
     debug: false,
     devtool: false,
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+    },
 });
 
 module.exports = result;

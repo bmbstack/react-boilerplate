@@ -1,6 +1,9 @@
 #react-boilerplate
 
 ## History
+- 2017年02月07日
+    - 在生产版本中添加CDN服务
+        - react.js和react-dom.js
 - 2017年01月20日
     - 添加异步路由示例, 除了以下示例代码, 其他部分和同步路由没有区别
 ```javascript
