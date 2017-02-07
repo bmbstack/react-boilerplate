@@ -68,6 +68,28 @@ import { HTTP_METHOD } from '../constants/http';
  * need to import 'axios' at top
  * https://github.com/mzabriskie/axios
  */
+export function httpAxios(URL, method = HTTP_METHOD.GET, data = {},token='', credentials = false) {
+    return (
+        async () => {
+            const httpURL = URL + (token ? '&token='+token : '');
+            response = await httpProxy(httpURL, method, data, credentials );
+
+            if (response.status >= 200 && response.status < 300) {
+                return response.data;
+            } else {
+                throw new Error(`HTTP(${URL}) ERROR(${response.statusText})`);
+            }
+        }
+    )()
+}
+
+/**
+ * Solution 3:
+ * axios
+ *
+ * need to import 'axios' at top
+ * https://github.com/mzabriskie/axios
+ */
 export default function httpProxy(url, method = HTTP_METHOD.GET, data = {}, credentials = false) {
     const options = {
         url,
