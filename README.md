@@ -1,6 +1,8 @@
 #react-boilerplate
 
 ## History
+- 2017年02月09日
+    - 添加axio推荐的promise垫片，来支持IE浏览器的异步请求
 - 2017年02月07日
     - 在生产版本中添加CDN服务
         - react.js和react-dom.js
