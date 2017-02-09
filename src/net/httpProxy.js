@@ -1,7 +1,7 @@
 /**
  * 统一请求方式
  */
-
+require('es6-promise').polyfill();
 import axios from 'axios';
 import storage, { AUTHORIZATION_KEY } from '../utils/storage';
 import { HTTP_METHOD } from '../constants/http';
