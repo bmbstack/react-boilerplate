@@ -6,7 +6,7 @@ import loadAsyncWelcome from '../components/containers/AsyncWelcome.lazy';
 export default (
     <Route path="/" component={ containers.ExampleLayout }>
         <Route path="welcome/:content" component={ containers.Welcome }/>
-        <Route path="lazy" getComponent={ (nextState, cb) => loadAsyncWelcome(component => cb(null, component.default)) } />
+        <Route path="lazy" getComponent={ (nextState, cb) => loadAsyncWelcome(component => cb(null, component)) } />
         {/* other routes */}
     </Route>
 );
