@@ -6689,9 +6689,9 @@ webpack-merge@^0.14.1:
     lodash.isplainobject "^3.2.0"
     lodash.merge "^3.3.2"
 
-webpack-shell-plugin@^0.4.7:
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/webpack-shell-plugin/-/webpack-shell-plugin-0.4.7.tgz#e4fbef07a4dde652f13b4ac4423505f09dfbe275"
+webpack-shell-plugin@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/webpack-shell-plugin/-/webpack-shell-plugin-0.5.0.tgz#29b8a1d80ddeae0ddb10e729667f728653c2c742"
 
 webpack-sources@^0.1.0:
   version "0.1.2"
