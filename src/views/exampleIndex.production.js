@@ -22,7 +22,7 @@ function run() {
         , document.querySelector('#app'));
 }
 
-if (loadedStates.includes(document.readyState) && document.body) {
+if (loadedStates.indexOf(document.readyState) > -1 && document.body) {
     run();
 } else {
     window.addEventListener('DOMContentLoaded', run, false);
