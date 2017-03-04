@@ -12,8 +12,8 @@ const precss = require('precss');
 const package = require('../package.json');
 
 // 当前是否是开发环境
-const __DEV__ = process.env.NODE_ENV === 'development';
-
+// const __DEV__ = process.env.NODE_ENV === 'development';
+const __DEV__ = false;
 // 入口配置文件
 const entries = require('./entries.config.js');
 
@@ -45,16 +45,12 @@ const plugins = [
     // 文件头部说明
     new webpack.BannerPlugin(`Powered by FE @knowbox version ${package.version}`),
     // 共享代码
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'polyfill',
-        filename: 'js/polyfill.js',
-        chunks: ['babel-polyfill']
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'js/vendor.js',
-        chunks: ['react', 'react-dom', 'redux', 'react-redux', 'react-router', 'react-router-redux', 'redux-thunk', 'antd', 'in-view', 'axios']
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //     name: 'polyfill',
+    //     filename: 'js/polyfill.js',
+    //     chunks: ['babel-polyfill']
+    // }),
+    new webpack.optimize.CommonsChunkPlugin(/*name:*/ 'vendor',/*filename:*/ 'js/vendor.js'),
     // 分离CSS文件
     new ExtractTextPlugin('css/[name].style.css', {
         disable: false,
@@ -75,12 +71,14 @@ const entryConfig = entries.reduce((config, item) => {
         filename: `${item.name}.html`,
         template: item.template,
         favicon: './src/resources/favicon.png',
-        chunks: ['polyfill', 'vendor', item.name],
+        chunks: ['vendor', item.name],
         chunksSortMode: 'auto' 
     })));
 
     return config;
-}, {});
+}, {
+    vendor:['redux', 'react-redux', 'react-router', 'react-router-redux', 'redux-thunk', 'antd', 'in-view', 'axios']
+}); 
 
 console.info('Entries:');
 Object.keys(entryConfig).forEach(key  => console.info(key + '->' + entryConfig[key]));
@@ -167,5 +165,10 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.jsx'],
     },
-    plugins: plugins
+    plugins: plugins,
+    externals:{
+        'react':'React',
+        'react-dom':'ReactDOM',
+        'antd':'antd'
+    },
 };

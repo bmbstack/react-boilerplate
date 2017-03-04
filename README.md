@@ -1,6 +1,36 @@
 #react-boilerplate
 
 ## History
+- 2017年3月04日
+    - 将 react，react-dom，antd 等大体积文件使用cdn 分发加载，利用externals，*遇到的坑：*ant中推荐的
+```javascript
+    // AsyncWelcome.lazy.js
+    import { Button } from 'antd';
+```
+    配合*babel-plugin-import*插件，会编译成 antd/lib/xxx 导致找不到这个模块
+    解决方法：在.babelrc中删除掉
+```
+"plugins": [
+    "transform-runtime",
+    ["import", { libraryName: "antd", style: "css" }]
+],
+```
+中的 `` ["import", { libraryName: "antd", style: "css" }]``
+    - *todo* 热加载
+- 2017年03月03日
+    - 修复一个bug，
+    - 在entries.reduce中添加初始值 vendor 提取公共代码
+    - 因为new webpack.optimize.CommonsChunkPlugin仅支持这种格式 
+        new webpack.optimize.CommonsChunkPlugin(/*name*/'vendor',/*filename*/'js/vendor.js'), 
+```javascript
+    // webpack.config.base.js
+    const entryConfig = entries.reduce((config, item) => {
+    ...
+}, {
+    vendor:['babel-polyfill','react', 'react-dom', 'redux', 'react-redux', 'react-router', 'react-router-redux', 'redux-thunk', 'antd', 'in-view', 'axios']
+});
+
+```
 - 2017年02月09日
     - 添加axio推荐的promise垫片，来支持IE浏览器的异步请求
 - 2017年02月07日

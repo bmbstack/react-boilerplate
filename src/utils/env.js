@@ -28,15 +28,24 @@ export const ENV = {
 
     // 运行环境判断
     isRunInApp() {
-        return window.navigator.userAgent.toLowerCase().includes('knowbox') || hasToken;
+        return window.navigator.userAgent.toLowerCase().indexOf('knowbox') > -1 || hasToken;
     },
     isRunInWeChat() {
-        return window.navigator.userAgent.toLowerCase().includes('micromessenger');
+        return window.navigator.userAgent.toLowerCase().indexOf('micromessenger') > -1;
     },
     isRunInQQ() {
         return window.navigator.userAgent.match(/\sQQ/i);
     },
 
+    // 单词部落 
+    // 老师端单词部落环境判断
+    isTwordclan() {
+        return window.navigator.userAgent.toLowerCase().indexOf('twordclan') > -1 || hasToken,
+    }
+    // 学生端单词部落环境判断
+    isSwordclan() {
+        return window.navigator.userAgent.toLowerCase().indexOf('swordclan') > -1 || hasToken,
+    }
     // 操作系统判断
     isIOS() {
         return window.navigator.userAgent.match(/(iPhone|iPod|iPad);?/i);
