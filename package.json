@@ -82,5 +82,10 @@
     "webpack-hot-middleware": "^2.13.2",
     "webpack-merge": "^0.14.1",
     "webpack-shell-plugin": "^0.5.0"
+  },
+  "dependencies": {
+    "antd": "^2.7.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }

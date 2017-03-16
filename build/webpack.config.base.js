@@ -12,8 +12,8 @@ const precss = require('precss');
 const package = require('../package.json');
 
 // 当前是否是开发环境
-// const __DEV__ = process.env.NODE_ENV === 'development';
-const __DEV__ = false;
+const __DEV__ = process.env.NODE_ENV === 'development';
+// const __DEV__ = false;
 // 入口配置文件
 const entries = require('./entries.config.js');
 
@@ -166,9 +166,5 @@ module.exports = {
         extensions: ['', '.js', '.jsx'],
     },
     plugins: plugins,
-    externals:{
-        'react':'React',
-        'react-dom':'ReactDOM',
-        'antd':'antd'
-    },
+    
 };

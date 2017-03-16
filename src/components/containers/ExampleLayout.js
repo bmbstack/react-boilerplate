@@ -29,6 +29,7 @@ ExampleLayout.propTypes = {
     increaseAsync: PropTypes.func,
 };
 
+
 function mapState(state) {
     return {
         example: state.example
