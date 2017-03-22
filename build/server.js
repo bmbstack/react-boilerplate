@@ -15,10 +15,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
-    console.info(colors.red(path.resolve(`../dist/development/example.html`)));
-    res.sendFile(path.resolve(`../dist/development/example.html`));
-});
+//app.get('*', function(req, res) {
+    //console.info(colors.red(path.resolve(`../dist/development/example.html`)));
+    //res.sendFile(path.resolve(`../dist/development/example.html`));
+//});
 
 app.listen(port, function(err) {
     if (err) {
