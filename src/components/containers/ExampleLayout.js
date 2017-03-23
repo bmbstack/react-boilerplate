@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as exampleActions from '../../actions/example';
 
-import { DatePicker } from 'antd';
-
 const ExampleLayout = ({ children, example, increase, increaseAsync }) => 
     <div>
         <Counter content={ example.appleCount } />
@@ -13,7 +11,6 @@ const ExampleLayout = ({ children, example, increase, increaseAsync }) =>
             { children }
         </div>
         <div>
-            <DatePicker />
         </div>
         <div>
             <button onClick={ () => increase() }>Increase</button>

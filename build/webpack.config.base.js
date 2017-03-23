@@ -9,7 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 
-const package = require('../package.json');
+const pkg = require('../package.json');
 
 // 当前是否是开发环境
 const __DEV__ = process.env.NODE_ENV === 'development';
@@ -43,7 +43,7 @@ const plugins = [
         exclude: [],
     }),
     // 文件头部说明
-    new webpack.BannerPlugin(`Powered by FE @knowbox version ${package.version}`),
+    new webpack.BannerPlugin(`Powered by FE @knowbox version ${pkg.version}`),
     // 共享代码
     // new webpack.optimize.CommonsChunkPlugin({
     //     name: 'polyfill',

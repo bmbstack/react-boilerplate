@@ -7,7 +7,7 @@
     "test:app": "cross-env NODE_ENV=development mocha ./test/actions/**/*.spec.js ./test/mutations/**/*.spec.js --bail --compilers js:babel-core/register -t 5000 -s 1000",
     "lint": "eslint ./src --fix --cache",
     "doc": "jsdoc -c ./build/jsdoc.config.json ./src/",
-    "dev": "cross-env NODE_ENV=development node ./build/server.js 8080",
+    "dev": "cross-env NODE_ENV=development node -r babel-register ./build/server.js 8081",
     "pre": "cross-env NODE_ENV=preview webpack --config ./build/webpack.config.preview.js --colors --progress",
     "release": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js --colors --progress"
   },
@@ -18,6 +18,7 @@
   "author": "fe@knowbox.cn",
   "license": "MIT",
   "devDependencies": {
+    "antd": "^2.7.4",
     "autoprefixer": "^6.5.3",
     "axios": "^0.15.3",
     "babel-core": "^6.14.0",
@@ -84,9 +85,11 @@
     "webpack-shell-plugin": "^0.5.0"
   },
   "dependencies": {
-    "antd": "^2.7.4",
-    "next": "^1.2.3",
+    "babel-register": "^6.24.0",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "serve-favicon": "^2.4.1"
   }
 }

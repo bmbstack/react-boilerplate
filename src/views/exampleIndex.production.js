@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { hashHistory, /*browserHistory,*/ Router } from 'react-router';
+import {  browserHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from '../store/configureStore';
 import { Provider } from 'react-redux';
@@ -9,7 +9,7 @@ import routes from '../routes/exampleRouter';
 import '../styles/app.less';
 
 const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 const loadedStates = ['complete', 'loaded', 'interactive'];
 
 function run() {
