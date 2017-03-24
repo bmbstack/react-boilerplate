@@ -1,6 +1,8 @@
 #react-boilerplate
 
 ## History
+- 2017年03月24日 Version 2.0.0
+    - 需要**升级node**到最新stable版本
 - 2017年03月24日 Version 1.1.0
     - 添加服务端渲染功能, 使用`yarn start:ssr`启动资源;
     - 添加BrowserHistory服务端示例, 使用`yarn start`启动资源;
