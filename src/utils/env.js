@@ -41,11 +41,11 @@ export const ENV = {
     // 老师端单词部落环境判断
     isTwordclan() {
         return window.navigator.userAgent.toLowerCase().indexOf('twordclan') > -1 || hasToken,
-    }
+    },
     // 学生端单词部落环境判断
     isSwordclan() {
         return window.navigator.userAgent.toLowerCase().indexOf('swordclan') > -1 || hasToken,
-    }
+    },
     // 操作系统判断
     isIOS() {
         return window.navigator.userAgent.match(/(iPhone|iPod|iPad);?/i);
