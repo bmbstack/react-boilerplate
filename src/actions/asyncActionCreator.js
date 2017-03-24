@@ -14,8 +14,10 @@ export default (URL,
         try {
             const response = await httpProxy(URL, method, data, certificate);
 
+            debugger;
             if (response.status >= 200 && response.status < 300) {
-                const json = await response.json();
+                const json = response.data;
+                // const json = await response.json(); // fetch的返回结果才需要json()
 
                 if (HTTP_RESPONSE_STATE.SUCCESS === json.code) {
                     dispatch(success(json.data));

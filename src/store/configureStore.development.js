@@ -5,7 +5,7 @@ import record from '../middleware/record';
 import rootReducer from '../reducers';
 import DevTools from '../components/DevTools';
 
-import { hashHistory } from 'react-router';
+import { /*browserHistory,*/ hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 
 const configureStore = preloadedState => {
