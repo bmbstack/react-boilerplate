@@ -29,6 +29,6 @@ export const increaseAsync = (count = 1) => asyncActionCreator(
     increaseAsyncSuccess,
     increaseAsyncFailure,
     HTTP_METHOD.POST,
-    count,
+    { count },
     false
 );

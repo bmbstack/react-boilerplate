@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
-import { DatePicker } from 'antd';
 import { connect } from 'react-redux';
 
 const AsyncWelcome = () =>
     <div>
-        <DatePicker />
+        Hello
     </div>;
 
 AsyncWelcome.propTypes = {

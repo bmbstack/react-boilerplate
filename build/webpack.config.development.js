@@ -11,7 +11,7 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const baseConfig = require('./webpack.config.base');
 
-const PORT = 8080;
+const PORT = 8081;
 const isWindows = os.platform() === 'win32';
 
 const result = merge(baseConfig, {

@@ -3,8 +3,7 @@ import Counter from '../dumbs/counter';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as exampleActions from '../../actions/example';
-
-import { DatePicker } from 'antd';
+import { Link } from 'react-router';
 
 const ExampleLayout = ({ children, example, increase, increaseAsync }) => 
     <div>
@@ -13,7 +12,7 @@ const ExampleLayout = ({ children, example, increase, increaseAsync }) =>
             { children }
         </div>
         <div>
-            <DatePicker />
+            <Link to="/welcome/321">Welcome/321</Link>
         </div>
         <div>
             <button onClick={ () => increase() }>Increase</button>
@@ -28,6 +27,7 @@ ExampleLayout.propTypes = {
     increase: PropTypes.func,
     increaseAsync: PropTypes.func,
 };
+
 
 function mapState(state) {
     return {
