@@ -34,6 +34,11 @@ const HtmlWebpackPluginOptions = {
 
 // 插件列表
 const plugins = [
+    // 兼容老版本Webpack
+    new webpack.LoaderOptionsPlugin({
+        debug: true,
+        progress: true,
+    }),
     // 删除生成的文件
     // https://github.com/johnagan/clean-webpack-plugin
     new CleanWebpackPlugin([DIST_PATH], {
@@ -43,16 +48,12 @@ const plugins = [
         exclude: [],
     }),
     // 文件头部说明
-    new webpack.BannerPlugin(`Powered by FE @knowbox version ${pkg.version}`),
-    // 共享代码
-    // new webpack.optimize.CommonsChunkPlugin({
-    //     name: 'polyfill',
-    //     filename: 'js/polyfill.js',
-    //     chunks: ['babel-polyfill']
-    // }),
-    new webpack.optimize.CommonsChunkPlugin(/*name:*/ 'vendor',/*filename:*/ 'js/vendor.js'),
+    new webpack.BannerPlugin({ banner: `Powered by FE @knowbox version ${pkg.version}`, raw: false, entryOnly: true }),
+    // new webpack.optimize.CommonsChunkPlugin(/*name:*/ 'vendor',/*filename:*/ 'js/vendor.js'),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.js' }),
     // 分离CSS文件
-    new ExtractTextPlugin('css/[name].style.css', {
+    new ExtractTextPlugin({
+        filename: 'css/[name].style.css',
         disable: false,
         allChunks: true
     }),
@@ -67,13 +68,21 @@ const REACT_HOT_LOADER = ['webpack-hot-middleware/client'];
 const entryConfig = entries.reduce((config, item) => {
     config[item.name] = __DEV__ ? REACT_HOT_LOADER.concat(item.entry) : item.entry;
 
-    plugins.push(new HtmlWebpackPlugin(Object.assign({}, HtmlWebpackPluginOptions, {
-        filename: `${item.name}.html`,
-        template: item.template,
-        favicon: './src/resources/favicon.png',
-        chunks: ['vendor', item.name],
-        chunksSortMode: 'auto' 
-    })));
+    plugins.push(new HtmlWebpackPlugin(
+        Object.assign(
+            {/* new object */}, 
+            HtmlWebpackPluginOptions, 
+            {
+                filename: `${item.name}.html`,
+                template: item.template,
+                favicon: './src/resources/favicon.png',
+                chunks: ['vendor', item.name],
+                chunksSortMode: 'auto',
+                title: item.title || '这里是标题',
+                version: pkg.version, 
+            }
+        )
+    ));
 
     return config;
 }, {
@@ -98,11 +107,12 @@ module.exports = {
         publicPath: '/'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 // use babel-loader for *.js or *.jsx files
                 test: /\.js[x]?$/,
-                loaders: __DEV__ ? ['react-hot'].concat(['babel']) : ['babel'],
+                //loaders: __DEV__ ? ['react-hot'].concat(['babel']) : ['babel'],
+                use: __DEV__ ? ['react-hot-loader'].concat(['babel-loader']) : ['babel-loader'],
                 // important: exclude files in node_modules
                 // otherwise it's going to be really slow!
                 exclude: /node_modules|\.lazy\.js/
@@ -110,60 +120,73 @@ module.exports = {
             {
                 // separate files, bundle.js will be minify
                 test: /\.lazy\.js$/i,
-                loaders: ['bundle-loader?lazy&name=[name]', 'babel'],
+                use: ['bundle-loader?lazy&name=[name]', 'babel-loader'],
             },
             {
                 // use css-loader for *.css files
-                test: /\.css/i,
-                loader: ExtractTextPlugin.extract('css-loader?sourceMap'),
-                // exclude: /node_modules/
+                test: /\.css$/i,
+                use: ExtractTextPlugin.extract({ 
+                    fallback: 'style-loader',
+                    use: 'css-loader',
+                    // publicPath: 'css/'
+                }),
+                exclude: /node_modules/
             },
             {
                 // use less-loader for *.less files
                 test: /\.less/i,
-                loader: ExtractTextPlugin.extract(`css-loader!postcss-loader!less-loader?${cssOptions}`),
+                use: ExtractTextPlugin.extract({ 
+                    fallback: 'style-loader',
+                    use: [
+                        'css-loader',
+                        'postcss-loader',
+                        `less-loader?${cssOptions}`
+                    ],
+                    // publicPath: 'css/'
+                }),
                 exclude: /node_modules/
             },
             {
-                // load json file
-                test: /\.json$/,
-                loader: 'json-loader'
-            }, 
-            {
                 // load image file
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loaders: [
+                use: [
                     // &publicPath=&outputPath=
-                    'file?hash=sha512&digest=hex&limit=10240&name=img/[name].[ext]?[hash]'
+                    'file-loader?hash=sha512&digest=hex&limit=10240&name=img/[name].[ext]?[hash]'
                 ]
             },
             {
                 // font file
                 test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&minetype=application/font-woff'
-            }, {
+                use: [ 'url-loader?limit=10000&minetype=application/font-woff' ]
+            }, 
+            {
                 test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&minetype=application/font-woff'
-            }, {
+                use: [ 'url-loader?limit=10000&minetype=application/font-woff' ]
+            }, 
+            {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&minetype=application/octet-stream'
-            }, {
+                use: [ 'url-loader?limit=10000&minetype=application/octet-stream' ]
+            }, 
+            {
                 test: /\.ijmap(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&minetype=application/font-woff'
-            }, {
+                use: [ 'url-loader?limit=10000&minetype=application/font-woff' ]
+            }, 
+            {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file'
-            }, {
+                use: [ 'file-loader' ]
+            }, 
+            {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&minetype=image/svg+xml'
+                use: [ 'url-loader?limit=10000&minetype=image/svg+xml' ]
             }
         ]
     },
-    postcss: function() {
-        return [autoprefixer({browsers: ['last 4 versions']}), precss];
-	},
     resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['.js', '.jsx'],
+        modules: [
+            path.join(__dirname, 'src'),
+            'node_modules',
+        ]
     },
     plugins: plugins,
     

@@ -17,14 +17,20 @@ const result = merge(baseConfig, {
                 NODE_ENV: '"production"'
             }
         }),
+        // 兼容老版本Webpack
+        new webpack.LoaderOptionsPlugin({
+            debug: false,
+            progress: false,
+        }),
         new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,  // default
+            minimize: true,
             compress: {
                 warnings: false,
                 drop_console: true
             }
         })
     ],
-    debug: false,
     devtool: false,
     externals:{
         'react':'React',

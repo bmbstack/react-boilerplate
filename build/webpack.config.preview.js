@@ -14,9 +14,13 @@ const result = merge(baseConfig, {
             'process.env': {
                 NODE_ENV: '"preview"'
             }
-        })
+        }),
+        // 兼容老版本Webpack
+        new webpack.LoaderOptionsPlugin({
+            debug: false,
+            progress: true,
+        }),
     ],
-    debug: false,
     devtool: 'cheap-module-eval-source-map',
 });
 
