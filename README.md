@@ -1,6 +1,8 @@
 #react-boilerplate
 
 ## History
+- 2017年03月25日 version 2.0.1
+    - 修复webpack-dev-middleware无法加载src/static目录中资源的问题
 - 2017年03月24日 Version 2.0.0
     - 需要**升级node**到最新stable版本
 - 2017年03月24日 Version 1.1.0
