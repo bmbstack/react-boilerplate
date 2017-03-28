@@ -80,6 +80,7 @@ const entryConfig = entries.reduce((config, item) => {
                 chunksSortMode: 'auto',
                 title: item.title || '这里是标题',
                 version: pkg.version, 
+                description: item.description,
             }
         )
     ));
