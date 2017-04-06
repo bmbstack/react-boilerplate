@@ -4,10 +4,12 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 
 const port = process.argv.length > 2 ? +process.argv[2] : 8080;
 const app = express();
 
+app.use(compression());
 app.use(favicon(path.join(__dirname, '../dist/production/', 'favicon.png')));
 app.use(bodyParser.urlencoded({ extended: true  }));
 app.use(bodyParser.json());
