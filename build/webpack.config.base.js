@@ -64,7 +64,7 @@ const plugins = [
 ];
 
 // 入口点对象生成
-const REACT_HOT_LOADER = ['webpack-hot-middleware/client'];
+const REACT_HOT_LOADER = ['webpack-hot-middleware/client', 'react-hot-loader/patch'];
 const entryConfig = entries.reduce((config, item) => {
     config[item.name] = __DEV__ ? REACT_HOT_LOADER.concat(item.entry) : item.entry;
 

@@ -16,7 +16,7 @@ class ExampleContainer extends Component {
 
         return (
             <div>
-                <div>{ dashboardData ? dashboardData : "123Hello World" }</div>
+                <div>{ dashboardData ? dashboardData : "Hello World" }</div>
                 <div>{ otherData }{ size.width }</div>
                 <button onClick={ fetch }>Click Me</button>
             </div>

@@ -1,12 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { hashHistory as history, /*browserHistory,*/ Router } from 'react-router';
+import { hashHistory as history, /*browserHistory,*/ } from 'react-router';
 import { Provider } from 'mobx-react';
 import { observable } from 'mobx';
 import DevTools from 'mobx-react-devtools';
+import { AppContainer } from 'react-hot-loader';
 
 import routes from '../routes/exampleRouter';
 import stores from '../stores';
+
+import App from '../components/App';
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
 const storeObservable = observable(stores);
@@ -14,10 +17,12 @@ const storeObservable = observable(stores);
 function run() {
     render(
         <Provider { ...storeObservable }>
-            <div>
-                <Router history={ history } routes={ routes }></Router>
-                <DevTools />
-            </div>
+            <AppContainer>
+                <div>
+                    <App history={ history } routes={ routes } />
+                    <DevTools />
+                </div>
+            </AppContainer>
         </Provider>
         , document.querySelector('#app'));
 }
@@ -29,10 +34,18 @@ if (loadedStates.indexOf(document.readyState) > -1 && document.body) {
 }
 
 if (module.hot) {
-    //module.hot.accept('../stores', () => {
-        //const newStores = require('../stores').default;
-        //console.dir(newStores)
-        //console.dir(storeObservable)
-    //});
     module.hot.accept();
+    //module.hot.accept(['../components/App'], () => {
+        //const NextApp = require('../components/App').default;
+        //render(
+            //<Provider { ...storeObservable }>
+                //<AppContainer>
+                    //<div>
+                        //<NextApp history={ history } routes={ routes } />
+                        //<DevTools />
+                    //</div>
+                //</AppContainer>
+            //</Provider>
+            //, document.querySelector('#app'));
+    //});
 }

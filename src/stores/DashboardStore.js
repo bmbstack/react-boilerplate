@@ -2,7 +2,7 @@ import { observable, computed, action, autorun } from 'mobx';
 
 class DashboardStore {
     @observable dashboardData = '';
-    @observable size = { width: 20, height: 30 };
+    @observable size = { width: 10, height: 20 };
 
     @computed get otherData() {
         return this.dashboardData + '123321';
