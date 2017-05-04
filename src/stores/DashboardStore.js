@@ -1,6 +1,12 @@
 import { observable, computed, action, autorun } from 'mobx';
+import httpProxy from '../net/httpProxy';
+import { WEB_API } from '../constants/api';
 
 class DashboardStore {
+    constructor() {
+        this.fetch = this.fetch.bind(this);
+    }
+
     @observable dashboardData = '';
     @observable size = { width: 10, height: 20 };
 
@@ -8,11 +14,10 @@ class DashboardStore {
         return this.dashboardData + '123321';
     }
 
-    @action fetch = async () => {
-        // mock http request
-        const response = await new Promise(resolve => setTimeout(() => resolve(222), 2000));
-        this.dashboardData = response;
+    @action async fetch () {
+        const response = await httpProxy.request(WEB_API.EXAMPLE_MOCK_URL);
 
+        this.dashboardData = response.data[1].b;
         this.size.width = 1;
     }
 }

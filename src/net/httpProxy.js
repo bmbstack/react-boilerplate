@@ -35,8 +35,8 @@ export default function httpProxy(url, method = HTTP_METHOD.GET, data = {}, cred
     return axios(options);
 }
 
-httpProxy.request = async () => {
-    const response = await httpProxy(...arguments);
+httpProxy.request = async (url, method, data, credentials) => {
+    const response = await httpProxy(url, method, data, credentials);
     if (response.status >= 200 && response.status < 300) {
         return response.data;
     } else {
