@@ -4,7 +4,7 @@
   "description": "脚手架",
   "main": "index.js",
   "scripts": {
-    "test:app": "cross-env NODE_ENV=development mocha ./test/actions/**/*.spec.js ./test/mutations/**/*.spec.js --bail --compilers js:babel-core/register -t 5000 -s 1000",
+    "test:app": "cross-env NODE_ENV=development mocha ./unit-test/**/*.spec.js --bail --compilers js:babel-core/register -t 5000 -s 1000",
     "lint": "eslint ./src --fix --cache",
     "doc": "jsdoc -c ./build/jsdoc.config.json ./src/",
     "dev": "cross-env NODE_ENV=development node -r babel-register ./build/server.js 8081",
@@ -47,6 +47,7 @@
     "colors": "^1.1.2",
     "cross-env": "^2.0.1",
     "css-loader": "^0.25.0",
+    "enzyme": "^2.8.2",
     "es6-promise": "^4.0.5",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
