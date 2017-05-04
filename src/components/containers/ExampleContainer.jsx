@@ -10,15 +10,16 @@ class ExampleContainer extends Component {
     }
 
     render() {
-        const { DashboardStore, ReportStore } = this.props;
+        const { DashboardStore, ReportStore, children } = this.props;
         const { dashboardData, size, fetch } = DashboardStore;
         const { otherData } = ReportStore;
 
         return (
             <div>
-                <div>{ dashboardData ? dashboardData : "Hello World" }</div>
+                <div>{ dashboardData ? dashboardData : "Loading" }</div>
                 <div>{ otherData }{ size.width }</div>
                 <button onClick={ fetch }>Click Me</button>
+                { children }
             </div>
         );
     }
