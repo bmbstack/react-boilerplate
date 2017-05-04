@@ -1,22 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { browserHistory, Router } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import configureStore from '../store/configureStore';
-import { Provider } from 'react-redux';
+import { /*hashHistory as history,*/ browserHistory as history, } from 'react-router';
+import { Provider } from 'mobx-react';
+import { observable } from 'mobx';
+
 import routes from '../routes/exampleRouter';
+import stores from '../stores';
 
-import '../styles/app.less';
+import App from '../components/App';
+import '../styles/app.sass';
 
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
 const loadedStates = ['complete', 'loaded', 'interactive'];
+const storeObservable = observable(stores);
 
 function run() {
     render(
-        <Provider store={ store }>
+        <Provider { ...storeObservable }>
             <div>
-                <Router history={ history } routes={ routes }></Router>
+                <App history={ history } routes={ routes } />
             </div>
         </Provider>
         , document.querySelector('#app'));
