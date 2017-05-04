@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
+import * as Style from './Counter.sass';
 
 const Counter = ({ content }) =>
-    <div>{ content }</div>;
+    <div className={ Style.red }>{ content }</div>;
 
 Counter.propTypes = {
     content: PropTypes.number

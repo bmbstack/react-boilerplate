@@ -51,7 +51,7 @@ const plugins = [
         exclude: [],
     }),
     // 文件头部说明
-    new webpack.BannerPlugin({ banner: `Powered by FE @knowbox version ${pkg.version}`, raw: false, entryOnly: true }),
+    new webpack.BannerPlugin({ banner: `Powered by FE @ Cube team Version ${pkg.version}`, raw: false, entryOnly: true }),
     // new webpack.optimize.CommonsChunkPlugin(/*name:*/ 'vendor',/*filename:*/ 'js/vendor.js'),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.js' }),
     // 分离CSS文件
@@ -135,7 +135,13 @@ module.exports = {
                 use: ExtractTextPlugin.extract({ 
                     fallback: 'style-loader',
                     use: [
-                        'css-loader',
+                        { 
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                localIdentName: __DEV__ ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64]',
+                            }
+                        },
                         'postcss-loader',
                         `sass-loader`
                     ],

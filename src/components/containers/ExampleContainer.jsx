@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { observer, inject } from 'mobx-react';
 
+import Counter from '../dumbs/Counter';
+
 @inject('DashboardStore')
 @inject('ReportStore')
 @observer
@@ -16,6 +18,7 @@ class ExampleContainer extends Component {
 
         return (
             <div>
+                <Counter content={ 123 }/>
                 <div>{ dashboardData ? dashboardData : "Loading" }</div>
                 <div>{ otherData }{ size.width }</div>
                 <button onClick={ fetch }>Click Me</button>
