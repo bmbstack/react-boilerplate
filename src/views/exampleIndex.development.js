@@ -1,21 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { hashHistory, /*browserHistory,*/ Router } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-import configureStore from '../store/configureStore';
-import { Provider } from 'react-redux';
+import { hashHistory as history, /*browserHistory,*/ Router } from 'react-router';
+import { Provider } from 'mobx-react';
+import { observable } from 'mobx';
+import DevTools from 'mobx-react-devtools';
+
 import routes from '../routes/exampleRouter';
-import DevTools from '../components/DevTools';
+import stores from '../stores';
 
-import '../styles/app.less';
-
-const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store);
 const loadedStates = ['complete', 'loaded', 'interactive'];
+const storeObservable = observable(stores);
 
 function run() {
     render(
-        <Provider store={ store }>
+        <Provider { ...storeObservable }>
             <div>
                 <Router history={ history } routes={ routes }></Router>
                 <DevTools />
@@ -28,4 +26,13 @@ if (loadedStates.indexOf(document.readyState) > -1 && document.body) {
     run();
 } else {
     window.addEventListener('DOMContentLoaded', run, false);
+}
+
+if (module.hot) {
+    //module.hot.accept('../stores', () => {
+        //const newStores = require('../stores').default;
+        //console.dir(newStores)
+        //console.dir(storeObservable)
+    //});
+    module.hot.accept();
 }

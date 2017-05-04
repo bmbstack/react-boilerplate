@@ -87,7 +87,7 @@ const entryConfig = entries.reduce((config, item) => {
 
     return config;
 }, {
-    vendor:['redux', 'react-redux', 'react-router', 'react-router-redux', 'redux-thunk', 'antd', 'in-view', 'axios']
+    vendor:['mobx', 'mobx-react', 'axios']
 }); 
 
 console.info('Entries:');
@@ -113,7 +113,7 @@ module.exports = {
                 // use babel-loader for *.js or *.jsx files
                 test: /\.js[x]?$/,
                 //loaders: __DEV__ ? ['react-hot'].concat(['babel']) : ['babel'],
-                use: __DEV__ ? ['react-hot-loader'].concat(['babel-loader']) : ['babel-loader'],
+                use: ['babel-loader'],
                 // important: exclude files in node_modules
                 // otherwise it's going to be really slow!
                 exclude: /node_modules|\.lazy\.js/
@@ -141,7 +141,7 @@ module.exports = {
                     use: [
                         'css-loader',
                         'postcss-loader',
-                        `less-loader?${cssOptions}`
+                        //`less-loader?${cssOptions}`
                     ],
                     // publicPath: 'css/'
                 }),

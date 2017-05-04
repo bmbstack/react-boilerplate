@@ -1,19 +1,9 @@
-const __DEV__ = process.env.NODE_ENV === 'development';
-
-module.exports = __DEV__ ? [
+module.exports = [
 	{
         "name": "example",
         "title": "示例页面",
         "entry": ["./src/views/exampleIndex.js"],
-        "template": "./src/template/app.dev.html",
+        "template": "./src/template/app.html",
         "description": "开发环境承载页"
-    }
-] : [
-	{
-        "name": "example",
-        "title": "示例页面",
-        "entry": ["./src/views/exampleIndex.js"],
-        "template": "./src/template/app.pro.html",
-        "description": "承载页"
     }
 ]
