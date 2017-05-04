@@ -10,6 +10,7 @@ import routes from '../routes/exampleRouter';
 import stores from '../stores';
 
 import App from '../components/App';
+import '../styles/app.sass';
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
 const storeObservable = observable(stores);

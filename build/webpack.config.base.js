@@ -38,6 +38,9 @@ const plugins = [
     new webpack.LoaderOptionsPlugin({
         debug: true,
         progress: true,
+        sassLoader: {
+            data: `$env: ${process.env.NODE_ENV}`
+        }
     }),
     // 删除生成的文件
     // https://github.com/johnagan/clean-webpack-plugin
@@ -53,7 +56,7 @@ const plugins = [
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'js/vendor.js' }),
     // 分离CSS文件
     new ExtractTextPlugin({
-        filename: 'css/[name].style.css',
+        filename: 'css/[name].sass.css',
         disable: false,
         allChunks: true
     }),
@@ -93,13 +96,6 @@ const entryConfig = entries.reduce((config, item) => {
 console.info('Entries:');
 Object.keys(entryConfig).forEach(key  => console.info(key + '->' + entryConfig[key]));
 
-// less or sass variable configuration
-const cssOptions = JSON.stringify({
-    modifyVars: {
-        'theme-color': 'red'
-    }
-});
-
 module.exports = {
     entry: entryConfig,
     output: {
@@ -134,14 +130,14 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                // use less-loader for *.less files
-                test: /\.less/i,
+                // use sass-loader for *.sass files
+                test: /\.sass/i,
                 use: ExtractTextPlugin.extract({ 
                     fallback: 'style-loader',
                     use: [
                         'css-loader',
                         'postcss-loader',
-                        //`less-loader?${cssOptions}`
+                        `sass-loader`
                     ],
                     // publicPath: 'css/'
                 }),

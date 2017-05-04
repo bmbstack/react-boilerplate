@@ -35,7 +35,6 @@ const result = merge(baseConfig, {
     externals:{
         'react':'React',
         'react-dom':'ReactDOM',
-        'antd':'antd'
     },
 });
 
