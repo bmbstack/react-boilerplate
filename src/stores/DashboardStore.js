@@ -22,4 +22,4 @@ class DashboardStore {
     }
 }
 
-export default new DashboardStore();
+export default DashboardStore;

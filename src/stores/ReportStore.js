@@ -7,4 +7,4 @@ class ReportStore {
     }
 }
 
-export default new ReportStore();
+export default ReportStore;
