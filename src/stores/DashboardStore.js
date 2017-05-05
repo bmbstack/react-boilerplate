@@ -1,3 +1,5 @@
+/* global process */
+
 import { observable, computed, action, autorun } from 'mobx';
 import httpProxy from '../net/httpProxy';
 import { WEB_API } from '../constants/api';
@@ -5,6 +7,11 @@ import { WEB_API } from '../constants/api';
 class DashboardStore {
     constructor() {
         this.fetch = this.fetch.bind(this);
+        if (process.env.NODE_ENV === 'development') {
+            autorun('Dashboard store has changed', () => {
+                console.dir(this.size.width);
+            });
+        }
     }
 
     @observable dashboardData = '';
@@ -18,7 +25,7 @@ class DashboardStore {
         const response = await httpProxy.request(WEB_API.EXAMPLE_MOCK_URL);
 
         this.dashboardData = response.data[1].b;
-        this.size.width = 1;
+        this.size.width = response.data[1].a;
     }
 }
 
