@@ -4,6 +4,9 @@ import { observable, computed, action, autorun } from 'mobx';
 import httpProxy from '../net/httpProxy';
 import { WEB_API } from '../constants/api';
 
+import authority from '../decorators/authority';
+import deprecated from '../decorators/deprecated';
+
 class DashboardStore {
     constructor() {
         this.fetch = this.fetch.bind(this);
@@ -21,7 +24,12 @@ class DashboardStore {
         return this.dashboardData + '123321';
     }
 
-    @action async fetch () {
+    @action 
+    @authority('rule') 
+    @authority('rule2') 
+    @authority('rule3') 
+    @deprecated()
+    async fetch () {
         const response = await httpProxy.request(WEB_API.EXAMPLE_MOCK_URL);
 
         this.dashboardData = response.data[1].b;
