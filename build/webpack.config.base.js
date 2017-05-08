@@ -1,3 +1,5 @@
+process.traceDeprecation = true
+
 const path = require('path');
 const webpack = require('webpack');
 
@@ -136,11 +138,7 @@ module.exports = {
                     fallback: 'style-loader',
                     use: [
                         { 
-                            loader: 'css-loader',
-                            options: {
-                                modules: true,
-                                localIdentName: __DEV__ ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64]',
-                            }
+                            loader: `css-loader?modules&localIdentName=${ __DEV__ ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64]' }`,
                         },
                         'postcss-loader',
                         `sass-loader`
