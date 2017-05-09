@@ -8,7 +8,7 @@ const authority = (rule) => (target, name, descriptor) => {
     descriptor.value = function() {
         const args = Array.from(arguments);
         return origin.apply(this, args);
-    }
+    };
 
     return descriptor;
 };
