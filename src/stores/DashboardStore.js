@@ -9,7 +9,6 @@ import deprecated from '../decorators/deprecated';
 
 class DashboardStore {
     constructor() {
-        this.fetch = this.fetch.bind(this);
         if (process.env.NODE_ENV === 'development') {
             autorun('Dashboard store has changed', () => {
                 console.dir(this.size.width);
@@ -24,7 +23,7 @@ class DashboardStore {
         return this.dashboardData + '123321';
     }
 
-    @action 
+    @action.bound
     @authority('rule') 
     @authority('rule2') 
     @authority('rule3') 
