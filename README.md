@@ -1,6 +1,9 @@
 #react-boilerplate
 
 ## History
+- 2017年05月10日 version 3.0.0beta
+    - 去掉 redux 改用 mobx, 但仍然处于实验性质 
+
 - 2017年04月06日 version 2.0.2
     - 添加compression中间件
 - 2017年03月25日 version 2.0.1
