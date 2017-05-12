@@ -12,7 +12,7 @@ import stores from '../stores';
 import App from '../components/App';
 import '../styles/app.sass';
 
-import '../../mock-case/example-case';
+import '../../mock_case/example_case';
 
 const loadedStates = ['complete', 'loaded', 'interactive'];
 const storeObservable = observable(stores);

@@ -10,7 +10,7 @@ import Demo2Container from '../components/containers/Demo2Container';
 export default (
     <Route path='/' component={ ExampleContainer }>
         <Route path="lazy" getComponent={ (nextState, cb) => loadAsyncWelcome(component => cb(null, component.default)) } />
-        <Route path="demo1" component={ () => <Demo1Container /> } />
+        <Route path="demo1" test="1" component={ () => <Demo1Container /> } />
         <Route path="demo2" component={ () => <Demo2Container /> } />
     </Route>
 );
