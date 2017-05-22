@@ -1,6 +1,23 @@
 #react-boilerplate
 
 ## History
+- 2017年5月22日 version 2.0.3
+    - 修复一个小问题 为了配合antd脚手架使用 css-loader不应排除node_modules
+    - 添加一个小插件 prop-types，符合react官方要求，因为 
+
+    ```javascript
+    PropTypes via the main React package is deprecated
+    ```
+
+    ```
+    <!--旧的引用方法-->
+    import React, { PropTypes } from 'react';
+    
+    <!--新的引用方法-->
+    import React from 'react';
+    import PropTypes from 'prop-types';
+    ```
+    这样在控制台还是会警告，是`antd`引用`PropTypes`方法错误，导致的，可忽略
 - 2017年04月06日 version 2.0.2
     - 添加compression中间件
 - 2017年03月25日 version 2.0.1

@@ -131,7 +131,7 @@ module.exports = {
                     use: 'css-loader',
                     // publicPath: 'css/'
                 }),
-                exclude: /node_modules/
+                // exclude: /node_modules/
             },
             {
                 // use less-loader for *.less files
