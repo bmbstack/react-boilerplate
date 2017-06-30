@@ -8,9 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const autoprefixer = require('autoprefixer');
-const precss = require('precss');
-
 const pkg = require('../package.json');
 
 // 当前是否是开发环境
