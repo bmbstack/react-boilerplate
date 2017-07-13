@@ -1,12 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
-
+// extract-text-webpack-plugin该插件的主要是为了抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// html-webpack-plugin 帮助生成 HTML 文件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// transfer-webpack-plugin把指定目录下的资源copy到特定目录
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
+// clean-webpack-plugin用于在building之前删除你以前build过的文件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+// gulp-autoprefixer根据设置浏览器版本自动处理浏览器前缀
 const autoprefixer = require('autoprefixer');
+// Precss 可以在 CSS 文件中使用 Sass 类型的 Markup。
 const precss = require('precss');
 
 const pkg = require('../package.json');
