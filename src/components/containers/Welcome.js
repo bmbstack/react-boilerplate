@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 const Welcome = ({ params: { content }, location: { query } }) =>
     <div>Yes { content } { JSON.stringify(query) }</div>;
 

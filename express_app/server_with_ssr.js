@@ -4,6 +4,7 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 
 // ssr
 import React from 'react';
@@ -16,6 +17,24 @@ import routes from '../src/routes/exampleRouter';
 
 const port = process.argv.length > 2 ? +process.argv[2] : 8080;
 const app = express();
+
+app.use(compression());
+app.use(favicon(path.join(__dirname, '../dist/production/', 'favicon.png')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false  }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, '../dist/production')));
+
+app.use((err, req, res, next) => {
+    if (req.xhr)
+        res.status(500).send({ 
+            code: 0,
+            msg: 'failed',
+            data: null 
+        });
+    else
+        next(err);
+});
 
 const store = configureStore();
 const loadedStates = ['complete', 'loaded', 'interactive'];
@@ -40,6 +59,14 @@ app.get('/welcome/:content', (req, res) => {
     });
 });
 
+app.post('/apple', (req, res) => {
+    res.status(200).json({
+        code: 99999,
+        msg: 'success',
+        data: 1,
+    });
+});
+
 function wrapHTML(html) {
     return `<!DOCTYPE html>
 <html>
@@ -59,12 +86,6 @@ function wrapHTML(html) {
     </body>
 </html>`;
 }
-
-app.use(favicon(path.join(__dirname, '../dist/production/', 'favicon.png')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false  }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../dist/production')));
 
 app.listen(port, (err) => {
     if (err) {

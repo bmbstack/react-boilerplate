@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'; // eslint-disable-line
+import React from 'react'; // eslint-disable-line
+import PropTypes from 'prop-types';
 import Counter from '../dumbs/counter';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

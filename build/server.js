@@ -11,11 +11,17 @@ const app = express();
 const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
+    noInfo: true,
+    headers: {
+        "X-DEV-Header": "yes"
+    }
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
 //*/
+
+app.use(express.static(path.join(__dirname, '../src/static')));
 
 app.post('/apple', (req, res) => {
     res.json({
