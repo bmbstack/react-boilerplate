@@ -24,6 +24,7 @@ function run() {
         , document.querySelector('#app'));
 }
 
+
 if (loadedStates.indexOf(document.readyState) > -1 && document.body) {
     run();
 } else {

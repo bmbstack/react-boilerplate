@@ -10,14 +10,14 @@
     "dev": "cross-env NODE_ENV=development node -r babel-register ./build/server.js 8081",
     "pre": "cross-env NODE_ENV=preview webpack --config ./build/webpack.config.preview.js --colors --progress",
     "release": "cross-env NODE_ENV=production webpack --config ./build/webpack.config.production.js --colors --progress",
-    "start": "cross-env NODE_ENV=production node -r babel-register ./express_app/server.js 8082",
-    "start:ssr": "cross-env NODE_ENV=production node -r babel-register ./express_app/server_with_ssr.js 8083"
+    "start": "cross-env NODE_ENV=production node -r babel-register ./server/server.js 8082",
+    "start:ssr": "cross-env NODE_ENV=production node -r babel-register ./server/server_with_ssr.js 8083"
   },
   "repository": {
     "type": "git",
     "url": ""
   },
-  "author": "fe@knowbox.cn",
+  "author": "wangmingjob@icloud.com",
   "license": "MIT",
   "devDependencies": {
     "antd": "^2.7.4",

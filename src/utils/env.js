@@ -1,15 +1,14 @@
 /**
  * 环境判断, 是否运行在目标环境中
  *
- * @author qiuwei
  */
 
 import { MOBILE_API } from '../constants/api';
 
 const hasToken = window.location.search.match(/token=/i);
 
-export const IOS_URL = 'https://itunes.apple.com/us/app/zuo-ye-he-zi-xue-sheng-duan/id982502330?l=zh&ls=1&mt=8';
-export const ANDROID_URL = 'http://app.knowbox.cn/hz/englishmatch.html';
+export const IOS_URL = 'https://itunes.apple.com/us/app/app-name/appid?l=zh&ls=1&mt=8';
+export const ANDROID_URL = 'http://app.domain.com/download/android.html';
 
 // 设备类型
 export const DEVICE_TYPE = {
@@ -18,14 +17,6 @@ export const DEVICE_TYPE = {
 };
 
 export const ENV = {
-    // 身份判断
-    isStudent() {
-        return window.location.search.match(/student/i);       
-    },
-    isTeacher() {
-        return window.location.search.match(/teacher/i);
-    },
-
     // 运行环境判断
     isRunInApp() {
         return window.navigator.userAgent.toLowerCase().indexOf('knowbox') > -1 || hasToken;
@@ -37,15 +28,6 @@ export const ENV = {
         return window.navigator.userAgent.match(/\sQQ/i);
     },
 
-    // 单词部落 
-    // 老师端单词部落环境判断
-    isTwordclan() {
-        return window.navigator.userAgent.toLowerCase().indexOf('twordclan') > -1 || hasToken,
-    },
-    // 学生端单词部落环境判断
-    isSwordclan() {
-        return window.navigator.userAgent.toLowerCase().indexOf('swordclan') > -1 || hasToken,
-    },
     // 操作系统判断
     isIOS() {
         return window.navigator.userAgent.match(/(iPhone|iPod|iPad);?/i);
@@ -82,7 +64,7 @@ export const ENV = {
         else if (ENV.isAndroid())
             downloadUrl = ANDROID_URL;
         else
-            alert('尚未支持的手机操作系统, 请致电作业盒子的程序猿们, 他们会尽量找个借口甩锅.');
+            alert('尚未支持的手机操作系统, 请致我们公司的程序猿们, 他们会尽量解决这个问题.');
 
         window.location.href = MOBILE_API.DOWNLOAD_URL;
         setTimeout(() => {

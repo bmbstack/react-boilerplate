@@ -1,8 +1,6 @@
 /**
  * 设置分享
  *
- * @author nixon
- * @date 2016年10月15日
  */
 
 /* eslint-disable no-undef */

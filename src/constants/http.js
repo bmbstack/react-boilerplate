@@ -1,8 +1,6 @@
 /**
  * HTTP响应状态枚举
  *
- * @author qiuwei
- * @date 2016年09月10日
  */
 const HTTP_RESPONSE_STATE = {
     SUCCESS: 99999,

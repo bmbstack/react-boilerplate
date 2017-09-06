@@ -1,8 +1,6 @@
 /**
  * 按需加载js资源
  *
- * @author: nixon
- * @date: 2016年10月16日
  */
 
 export default function require(resource, done) {

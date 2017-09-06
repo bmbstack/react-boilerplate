@@ -45,7 +45,7 @@ class Hybird {
             'url': url,
             'description': description,
             'site': site,
-            'siteUrl': 'http://ssapp.knowbox.cn',
+            'siteUrl': 'http://www.domain.com',
             'type': 2
         };
 

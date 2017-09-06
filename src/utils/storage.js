@@ -2,7 +2,6 @@
 * 创建本地存储方案
 *
 * @class Storage
-* @author qiuwei
 * @description 为了兼容老版本, 使用cookie作为存储介质
 */
 export const AUTHORIZATION_KEY = 'client_authorization_token';
